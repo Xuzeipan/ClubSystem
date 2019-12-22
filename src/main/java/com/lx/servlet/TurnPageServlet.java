@@ -31,7 +31,6 @@ public class TurnPageServlet extends HttpServlet {
             JsonUtils.returnJson(resp,new Result(1,"登录超时，请重新登录",null));
         }else{
             String page = req.getParameter("page");
-            System.out.println(page);
             ApplicationContext context = new ClassPathXmlApplicationContext("Application.xml");
             ApplyService applyService = context.getBean(ApplyService.class);
             List<Apply> applies = applyService.turnPage(user.getClubId(), Integer.parseInt(page));

@@ -48,8 +48,7 @@ public class InsertTaskServlet extends HttpServlet {
             task.setUserId(userId);
             task.setReleaseName(userName);
             taskService.insertTask(task);
-            System.out.println(task);
-            Result result = new Result(0,"成功",null);
+            Result result = new Result(0,"提交成功",null);
             JsonUtil.ReturnJson(resp,result);
         }
     }

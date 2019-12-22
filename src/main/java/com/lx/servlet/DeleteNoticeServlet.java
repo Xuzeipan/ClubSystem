@@ -26,14 +26,13 @@ public class DeleteNoticeServlet extends HttpServlet {
         ApplicationContext context = new ClassPathXmlApplicationContext("Application.xml");
         //判断req中的id是否为空
         String id = req.getParameter("id");
-        System.out.println(id);
         NoticeService noticeService = context.getBean(NoticeService.class);
         if (id==null){
             Result result = new Result(1,"出问题了",null);
             JsonUtil.ReturnJson(resp,result);
         }else {
             noticeService.deleteNoticeById(Integer.parseInt(id));
-            Result result = new Result(0,"成功",null);
+            Result result = new Result(0,"删除成功",null);
             JsonUtil.ReturnJson(resp,result);
         }
         //根据id删除notice

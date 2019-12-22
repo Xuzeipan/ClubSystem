@@ -13,7 +13,7 @@
         select * from task
     </select>
     <select id="queryAllByUserId" resultType="com.lx.POJO.Task">
-        select * from task where userId = #{userId}
+        select * from task where userId = #{userId} order by id desc
     </select>
     <update id="updateStatusById" parameterType="java.lang.Integer">
         update task set status = 1 where id = #{id}

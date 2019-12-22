@@ -25,5 +25,12 @@ notic.onclick = function() {
     window.location.href = locations[5];
 }
 logout.onclick = function() {
-    window.location.href = "login.html";
+    $.ajax({
+        url:"../logoutServlet",
+        method:"get"
+    }).done(function (data) {
+        if (data.status==0){
+            window.location.href = "login.html";
+        }
+    })
 }

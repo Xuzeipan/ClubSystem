@@ -6,6 +6,9 @@ import com.lx.mapper.UserMapper;
 import com.lx.utils.ApplyProgressUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,8 +67,8 @@ public class ApplyServiceImpl implements ApplyService{
         }
         return remApply;
     }
-
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED,propagation = Propagation.NESTED)
     public void rejectApply(int applyId) {
         applyMapper.rejectApply(applyId);
         applyMapper.deleteDateInBuffer(applyId);
@@ -83,6 +86,7 @@ public class ApplyServiceImpl implements ApplyService{
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED,propagation = Propagation.NESTED)
     public void handleLastApply(int applyId) {
         applyMapper.deleteDateInBuffer(applyId);
         applyMapper.agreeApply(applyId);

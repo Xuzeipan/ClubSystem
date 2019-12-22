@@ -10,6 +10,10 @@
     <script type="text/javascript" src="../js/vue.min.js"></script>
     <link rel="stylesheet" href="../font/iconfont.css" />
     <link rel="stylesheet" href="../css/framework.css" />
+
+    <link href="../css/xtiper.css" type="text/css" rel="stylesheet" />
+    <link rel="shortcut icon" href="#"/>
+    <script src="../js/xtiper.min.js" type="text/javascript"></script>
     <style>
         * {
             margin: 0;
@@ -166,7 +170,7 @@
             <p class="header-username">林瑞鑫</p>
         </div>
         <div class="header-title">
-            <p class="title-content">员工管理系统</p>
+            <p class="title-content">社团管理系统</p>
         </div>
         <div class="header-right">
             <div class="right-email">
@@ -180,7 +184,7 @@
                 </div>
             </div>
             <div class="right-logout">
-                <div class="logout-content">
+                <div id="logout" class="logout-content">
                     <p class="font-logout">退出</p>
                     <span class="iconfont icon-dengchu" style=" width: 47px; float:right; font-size: 30px; padding-top: 3px;padding-bottom: 4px;color: #fff;"></span>
                 </div>
@@ -243,7 +247,7 @@
                     $("#tasktable").append("<tr><td>"+task.id+"</td><td>"+task.title+"</td><td>"+task.message+"</td><td>"+task.releaseName+"</td><td>"+task.releaseTime+"</td><td>"+status+"</td><td><button id='finish' class='finish'>"+"完成"+"</button></td></tr>")
                 }
             } else if (data.status == 1) {
-                alert(data.msg);
+                xtip.msg(data.msg,{icon:'e',type:'w'});
             }
         })
         /*var allResults = eval(results);
@@ -263,7 +267,6 @@
         var myTable = document.getElementById("tasktable");
         myTable.innerHTML += html;*/
        $(document).on('click', '.finish', function(){
-           alert("hhh");
            //判断是否已完成
            var taskstatus = $(this).parent().siblings("td:eq(5)").text();
            var taskid = $(this).parent().siblings("td:eq(0)").text();
@@ -277,9 +280,11 @@
                    url: "../taskStatusServlet"
                }).done(function (data) {
                    if (data.status==0){
-                       alert(data.msg);
+                       xtip.msg(data.msg, {
+                           icon: 's',
+                           type: 'w'});
                    }else if (data.status==1){
-                       alert(data.msg);
+                       xtip.msg(data.msg,{icon:'e',type:'w'});
                    }
                })
            }

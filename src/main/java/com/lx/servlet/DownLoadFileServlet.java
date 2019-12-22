@@ -29,10 +29,8 @@ public class DownLoadFileServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
         URLDecoder.decode(req.getParameter("fileName"),"UTF-8");
         String fileName = req.getParameter("fileName");
-        System.out.println(fileName);
         ApplicationContext context = new ClassPathXmlApplicationContext("Application.xml");
         String filePath = getServletContext().getRealPath("/upload/"+fileName);
-        System.out.println(fileName);
         File file = new File(filePath);
         if(!file.exists()){
             JsonUtils.returnJson(resp,new Result(1,"抱歉！文件已丢失",null));

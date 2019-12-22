@@ -13,7 +13,7 @@
         select * from notice
     </select>
     <select id="queryAllByClubId" resultType="com.lx.POJO.Notice">
-        select * from notice where clubId = #{clubId}
+        select * from notice where clubId = #{clubId} order by id desc
     </select>
     <select id="queryAllById" resultType="com.lx.POJO.Notice">
         select * from notice where id = #{id}

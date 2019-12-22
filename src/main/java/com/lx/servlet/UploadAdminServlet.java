@@ -46,7 +46,6 @@ public class UploadAdminServlet extends HttpServlet {
                     if(!fileItem.isFormField()){
 //                        获取文件名
                         String name = fileItem.getName();
-                        System.out.println(name);
                         String randomName = RandomUtil.getStringRandom(4)+name;
 //                        文件保存在：项目真实路径/upload文件夹下
                         String webpath = getServletContext().getRealPath("/upload/"+randomName);

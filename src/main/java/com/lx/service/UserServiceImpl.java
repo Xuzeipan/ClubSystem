@@ -5,6 +5,8 @@ import com.lx.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -12,6 +14,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED,propagation = Propagation.NESTED)
     public void insertUser(User user) {
         userMapper.insertUser(user);
     }

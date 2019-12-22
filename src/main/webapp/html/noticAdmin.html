@@ -161,7 +161,7 @@
             <p class="header-username">林瑞鑫</p>
         </div>
         <div class="header-title">
-            <p class="title-content">员工管理系统</p>
+            <p class="title-content">社团管理系统</p>
         </div>
         <div class="header-right">
             <div class="right-email">
@@ -175,7 +175,7 @@
                 </div>
             </div>
             <div class="right-logout">
-                <div class="logout-content">
+                <div id="logout" class="logout-content">
                     <p class="font-logout">退出</p>
                     <span class="iconfont icon-dengchu" style=" width: 47px; float:right; font-size: 30px; padding-top: 3px;padding-bottom: 4px;color: #fff;"></span>
                 </div>
@@ -199,7 +199,7 @@
         <div class="main-out">
             <div class="main">
                 <div class="return">
-                    <a href="../html/noticlistAdmin.html"><span class="iconfont icon-fanhui" style="font-size: 40px;"></span></a>
+                    <a href="../html/adminNoticeList.html"><span class="iconfont icon-fanhui" style="font-size: 40px;"></span></a>
                 </div>
                 <div class="gonggaocontent">
                     <form onsubmit="return checkAll()">
@@ -224,7 +224,6 @@
 
     function checkAll() {
         isPass = true;
-        console.log(22222);
         if (textname.value == null || textname.value == "" || textname.value.trim() == "") {
             isPass = false;
             console.log("名称为空");
@@ -234,10 +233,8 @@
             console.log("内容为空");
         }
         if (isPass) {
-            console.log(3333);
             return isPass;
         } else {
-            console.log(1111);
             xtip.msg("请检查格式", {
                 icon: 'e',
                 type: 'w'
@@ -252,9 +249,11 @@
                 method:"post"
             }).done(function(data){
                 if(data.status == 0){
-                    alert(data.msg);
+                    xtip.msg(data.msg, {
+                        icon: 's',
+                        type: 'w'});
                 }else if(data.status == 1){
-                    alert(data.msg);
+                    xtip.msg(data.msg,{icon:'e',type:'w'});
                 }
             }).fail(function () {
                 alert("请求失败");

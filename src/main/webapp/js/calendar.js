@@ -12,7 +12,7 @@
                 b = "0" + b;
             }
             var c = a.toString() + b.toString();
-            localDate.date.push(c);
+            // localDate.date.push(c);
         }
 
         //初始化日期数据
@@ -123,7 +123,7 @@
             }
         }
         //当天签到添加样式
-        $("#button").on("click", function() {
+        /*$("#button").on("click", function() {
             $("tr").remove();
             $("p").remove();
             dateHandler(monthFirst, d, conter, monthNum);
@@ -145,17 +145,17 @@
                 }
             }
             if(checkPic == true) {
-                alert("您今天已经签到了！");
+                // alert("您今天已经签到了！");
             } else {
                 $(thisDay).addClass("qiandao");
-                alert("已签到！");
+                // alert("已签到！");
                 localDate.date.push(thisBlock);
             }
-        })
+        })*/
         //查询历史记录
         $("#button3").on("click", function() {
             $("tr").remove();
-            $("p").remove();
+            $("#home").find("p").remove();
             if(m > 0 && n > 0) {
                 m--, n--;
             }
@@ -170,7 +170,8 @@
         //返回上月记录
         $("#button4").on("click", function() {
             $("tr").remove();
-            $("p").remove();
+            $("#home").find("p").remove();
+            console.log($("#home"));
             if(m < x) {
                 m++, n++;
             }

@@ -31,7 +31,7 @@ public class TaskStatusServlet extends HttpServlet {
         }else{
             TaskService service = context.getBean(TaskService.class);
             service.updateStatusById(Integer.parseInt(id));
-            Result result = new Result(0,"成功",null);
+            Result result = new Result(0,"提交成功",null);
             JsonUtil.ReturnJson(resp,result);
         }
         //更改task状态

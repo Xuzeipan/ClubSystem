@@ -43,7 +43,7 @@ public class InsertNoticeServlet extends HttpServlet {
             notice.setTitle(title);
             notice.setReleaseName(userName);
             noticeService.insertNotice(notice);
-            Result result = new Result(0,"成功",null);
+            Result result = new Result(0,"提交成功",null);
             JsonUtil.ReturnJson(resp,result);
         }
         //获取session中user的clubid

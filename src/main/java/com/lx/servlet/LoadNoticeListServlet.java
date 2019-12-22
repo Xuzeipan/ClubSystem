@@ -29,14 +29,21 @@ public class LoadNoticeListServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         ApplicationContext context = new ClassPathXmlApplicationContext("Application.xml");
         HttpSession session = req.getSession();
-        User user = (User) session.getAttribute("adminUser");
+        User adminUser = (User) session.getAttribute("adminUser");
+        User user = (User) session.getAttribute("User");
         //判断session中有无数据，有就获取，没有就返回重新登陆
-        if (user==null){
+        if (user==null&&adminUser==null){
             Result result = new Result(1,"登陆超时，请重新登陆",null);
             JsonUtil.ReturnJson(resp,result);
         }else {
+            User ad;
+            if (user==null){
+                ad=adminUser;
+            }else {
+                ad=user;
+            }
             NoticeService service = context.getBean(NoticeService.class);
-            List<Notice> notices = service.queryAllByClubId(user.getClubId());
+            List<Notice> notices = service.queryAllByClubId(ad.getClubId());
             Result result = new Result(0,"成功",notices);
             JsonUtil.ReturnJson(resp,result);
         }

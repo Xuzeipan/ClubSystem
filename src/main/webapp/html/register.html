@@ -628,7 +628,7 @@
 				method:'post',
 			}).done(function(data){
 				if(data.status==0){
-					alert("注册成功!将为您跳转到登陆页面");
+					xtip.msg("注册成功!将为您跳转到登陆页面",{icon:'s',type:'w'});
 					console.log(data.obj);
 					location.href="../html/login.html";
 				}else if(data.status==1){
